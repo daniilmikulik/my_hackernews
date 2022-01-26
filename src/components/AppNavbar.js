@@ -21,7 +21,7 @@ class AppNavbar extends React.Component {
     render() {
         return (
         <>
-            <Navbar bg="dark" variant="dark" expand={'lg'} className={'fixed-top'}>
+            <Navbar bg="dark" variant="dark" expand={'lg'}>
                 <Container>
                     <Navbar.Brand href="/">Hacker News</Navbar.Brand>
                     <Nav className="me-auto">

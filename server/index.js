@@ -13,24 +13,22 @@ const corsOptions = {
 const server = express();
 server.use(cors(corsOptions));
 server.use(bodyParser.json());
+//server.use(express.json());
+//server.use(express.urlencoded({ extended: true }));
 server.use(bodyParser.urlencoded({extended : true}));
 
 async function loadIds(path, n){
     return axios.get(path)
         .then(function (response) {
             return response.data.slice(0, n);
-        }).catch((error) => {
-            console.log(`loadIds() failed with: ${error}`);
-        });
+        })
 }
 
 async function loadData(path){
     return axios.get(path)
         .then(function (response) {
             return response.data;
-        }).catch((error) => {
-            console.log(`loadData() failed with: ${error}`);
-        });
+        })
 }
 
 async function getItemsByIds(path, storiesId){
@@ -60,6 +58,7 @@ async function getComments(path, storyId){
 
 const dbpath = 'https://hacker-news.firebaseio.com/v0';
 const n = 100;
+const interval = 60000;
 let storiesCached = [];
 
 
@@ -67,8 +66,6 @@ server.get('/stories', (req, res) => {
     getStories(dbpath, n).then((stories) => {
         res.send(stories);
         storiesCached = stories;
-    }).catch((error) => {
-        console.log(`Getting stories failed with ${error}`);
     });
 });
 
@@ -76,18 +73,15 @@ server.get('/comments/:id', (req, res) => {
     let id = +req.params.id;
     getComments(dbpath, id).then((comments) => {
         res.send(comments);
-    }).catch((error) => {
-        console.log(`Getting root comments failed with ${error}`);
     });
 });
 
 server.get('/comment', (req, res) => {
     let ids = req.query.ids;
+    console.log(ids);
     if (ids){
         getItemsByIds(dbpath, ids).then((comments) => {
             res.send(comments);
-        }).catch((error) => {
-            console.log(`Getting comments by id's failed with ${error}`);
         });
     }
 });
@@ -96,9 +90,8 @@ server.get('/story/:id', (req, res) => {
    let id = +req.params.id;
    loadData(`${dbpath}/item/${id}.json`).then((story) => {
        res.send(story);
-   }).catch((error) => {
-       console.log(`Getting story by id failed with ${error}`);
-   });
+       console.log(story);
+   })
 });
 
 server.get('/sort/date', (req, res) => {
@@ -111,8 +104,6 @@ server.get('/sort/date', (req, res) => {
             res.send(stories.sort(function (a, b) {
                 return (+b.time) - (+a.time);
             }));
-        }).catch((error) => {
-            console.log(`Sorting by date failed with ${error} while loading data`);
         });
     }
 });
@@ -127,8 +118,6 @@ server.get('/sort/rating', (req, res) => {
             res.send(stories.sort(function (a, b) {
                 return (+b.score) - (+a.score);
             }));
-        }).catch((error) => {
-            console.log(`Sorting by rating failed with ${error} while loading data`);
         });
     }
 });
@@ -136,4 +125,3 @@ server.get('/sort/rating', (req, res) => {
 
 server.listen(8080);
 module.exports = server;
-
