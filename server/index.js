@@ -58,8 +58,7 @@ async function getComments(path, storyId){
 
 const dbpath = 'https://hacker-news.firebaseio.com/v0';
 const n = 100;
-const interval = 60000;
-let storiesCached = [];
+let storiesCached = null;
 
 
 server.get('/stories', (req, res) => {
