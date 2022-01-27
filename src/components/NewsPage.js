@@ -7,10 +7,11 @@ import CommentsTree from "./CommentsTree";
 
 function NewsPage(props){
     let params = useParams();
-    console.log(params.articleId);
     return (
         <div>
-            <AppNavbar/>
+            <header id={'home'}>
+                <AppNavbar/>
+            </header>
             <NewsHeader ident={params.articleId}/>
             <CommentsTree ident={params.articleId}/>
         </div>

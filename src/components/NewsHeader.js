@@ -11,17 +11,17 @@ class NewsHeader extends React.Component {
     }
 
     componentDidMount() {
-        console.log(`http://localhost:8080/story/${this.props.ident}`);
         axios.get(`http://localhost:8080/story/${this.props.ident}`).then((story)=>{
             //console.log(story);
             this.setState({"story": story.data});
             this.render();
+        }).catch((error) => {
+            console.log(`Loading story header failed with ${error}`);
         });
     }
 
     setContent(){
         let story = this.state.story;
-        console.log(story);
         if (story !== 0){
             let date = new Date(+story.time * 1000).toLocaleString();
             return (

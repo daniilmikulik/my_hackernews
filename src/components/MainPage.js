@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ControlPanel from "./ControlPanel";
 import axios from "axios";
 import MainTable from "./MainTable";
+import {Container} from "react-bootstrap";
 
 class MainPage extends React.Component {
     constructor(props) {
@@ -30,28 +31,31 @@ class MainPage extends React.Component {
 
     loadStories = () => {
         axios.get('http://localhost:8080/stories').then((stories)=>{
-            console.log(stories);
             if (this.mounted) {
                 this.setState({"stories": stories.data});
             }
+        }).catch((error) => {
+            console.log(`Loading stories failed with ${error}`);
         });
     }
 
     sortByDate = () => {
         axios.get('http://localhost:8080/sort/date').then((stories)=>{
-            console.log('sorted date called');
             if (this.mounted) {
                 this.setState({"stories": stories.data});
             }
+        }).catch((error) => {
+            console.log(`Sorting by date failed with ${error}`);
         });
     }
 
     sortByRating = () => {
         axios.get('http://localhost:8080/sort/rating').then((stories)=>{
-            console.log(stories);
             if (this.mounted) {
                 this.setState({"stories": stories.data});
             }
+        }).catch((error) => {
+            console.log(`Sorting by rating failed with ${error}`);
         });
     }
 
@@ -59,10 +63,14 @@ class MainPage extends React.Component {
     render() {
         return (
             <div>
-                <AppNavbar load={this.loadStories}/>
-                <MainDescription/>
-                <ControlPanel sortByDate={this.sortByDate} sortByRating={this.sortByRating}/>
-                <MainTable stories={this.state.stories}/>
+                <header id={'home'}>
+                    <AppNavbar load={this.loadStories}/>
+                </header>
+                <Container>
+                    <MainDescription/>
+                    <ControlPanel sortByDate={this.sortByDate} sortByRating={this.sortByRating}/>
+                    <MainTable stories={this.state.stories}/>
+                </Container>
             </div>
         );
     }
