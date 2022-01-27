@@ -18,6 +18,8 @@ class Comment extends React.Component {
                 if (this.mounted) {
                     this.setState({"comments": comments.data});
                 }
+            }).catch((error) => {
+                console.log(`Loading comments failed with ${error}`);
             });
     }
 
