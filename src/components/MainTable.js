@@ -40,9 +40,9 @@ class MainTable extends React.Component {
                 </Table>);
         } else {
             return (
-                <div className={'flex-row'}>
-                    <p className={'justify-content-center'}> Идет загрузка таблицы: </p>
-                    <Spinner animation={'border'} className={'justify-content-center'}/>
+                <div className={'d-flex flex-row justify-content-center'}>
+                    <p className={'me-2'}> Идет загрузка таблицы: </p>
+                    <Spinner animation={'border'}/>
                 </div>);
         }
     }
