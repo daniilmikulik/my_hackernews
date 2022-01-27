@@ -27,9 +27,10 @@ class CommentsTree extends React.Component {
     loadComments = () => {
         axios.get(`http://localhost:8080/comments/${this.props.ident}`).then((comments)=>{
             if (this.mounted) {
-                console.log(comments.data);
                 this.setState({"comments": comments.data});
             }
+        }).catch((error) => {
+            console.log(`Loading root comments failed with ${error}`);
         });
     }
 
