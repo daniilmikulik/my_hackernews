@@ -9,7 +9,7 @@ class MainTable extends React.Component {
     }
 
     setStories(stories) {
-        if (stories.length !== 0) {
+        if (stories && stories.length !== 0) {
             let table = [];
             for (let i = 0; i < stories.length; i++) {
                 let date = new Date(+stories[i].time * 1000).toLocaleString();
@@ -49,7 +49,7 @@ class MainTable extends React.Component {
 
     render(){
         return(
-            <Container className="container-fluid">
+            <Container data-testid='main-table' className="container-fluid">
                 {this.setStories(this.props.stories)}
             </Container>
         )

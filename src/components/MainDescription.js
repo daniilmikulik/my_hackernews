@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 class MainDescription extends React.Component {
     render(){
         return (
-                <Container className="container-fluid">
+                <Container data-testid={'main-description'} className="container-fluid">
                     <h1>
                         Hacker News
                     </h1>

@@ -37,7 +37,7 @@ class CommentsTree extends React.Component {
     render() {
         if (this.state.comments){
             return(
-                <Container className="container-fluid">
+                <Container data-testid={'comments-tree'} className="container-fluid">
                     <h1> Комментарии: </h1>
                     <CommentChildren comments={this.state.comments}/>
                 </Container>

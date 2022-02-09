@@ -62,7 +62,7 @@ class MainPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div data-testid={'main-page'}>
                 <header id={'home'}>
                     <AppNavbar load={this.loadStories}/>
                 </header>

@@ -5,7 +5,7 @@ import {Container, Button, ButtonGroup} from "react-bootstrap";
 class ControlPanel extends React.Component {
     render() {
         return (
-            <Container className={'container-fluid'}>
+            <Container data-testid={'control-panel'} className={'container-fluid'}>
                 <span className={'me-2'}> Сортировать по:</span>
                 <ButtonGroup >
                     <Button variant="outline-secondary" onClick={this.props.sortByDate}>Дате</Button>

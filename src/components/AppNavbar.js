@@ -7,13 +7,13 @@ class AppNavbar extends React.Component {
         if (this.props.load){
             return (
                 <Navbar.Collapse className="justify-content-end">
-                    <Button onClick={this.props.load}> Перезагрузить </Button>
+                    <Button data-testid="nav-button" onClick={this.props.load}> Перезагрузить </Button>
                 </Navbar.Collapse>
             );
         } else {
             return (
                 <Navbar.Collapse className="justify-content-end">
-                    <Button href={'/'} > Назад </Button>
+                    <Button data-testid="nav-button" href={'/'} > Назад </Button>
                 </Navbar.Collapse>
             );
         }
@@ -21,7 +21,7 @@ class AppNavbar extends React.Component {
     render() {
         return (
         <>
-            <Navbar bg="dark" variant="dark" expand={'lg'} className={'fixed-top'}>
+            <Navbar data-testid={"app-navbar"} bg="dark" variant="dark" expand={'lg'} className={'fixed-top'}>
                 <Container>
                     <Navbar.Brand href="/">Hacker News</Navbar.Brand>
                     <Nav className="me-auto">

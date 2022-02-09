@@ -32,8 +32,8 @@ class Comment extends React.Component {
         if (comment) {
             return (
                 <li key={comment.id}>
-                    <span>Пользователь {comment.by} пишет: </span>
-                    <div dangerouslySetInnerHTML={{__html: comment.text}}/>
+                    <span data-testid={'comment-by'} >Пользователь {comment.by} пишет: </span>
+                    <div data-testid='comment-text' dangerouslySetInnerHTML={{__html: comment.text}}/>
                     <CommentChildren comments={this.state.comments}/>
                 </li>
             )

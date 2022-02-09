@@ -22,7 +22,7 @@ class NewsHeader extends React.Component {
 
     setContent(){
         let story = this.state.story;
-        if (story !== 0){
+        if (story !== undefined){
             let date = new Date(+story.time * 1000).toLocaleString();
             return (
                 <>
@@ -43,7 +43,7 @@ class NewsHeader extends React.Component {
 
     render(){
         return(
-            <Container className="container-fluid">
+            <Container data-testid={'news-header'} className="container-fluid">
                 {this.setContent()}
             </Container>
         );

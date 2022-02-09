@@ -8,7 +8,7 @@ import CommentsTree from "./CommentsTree";
 function NewsPage(props){
     let params = useParams();
     return (
-        <div>
+        <div data-testid={'news-page'}>
             <header id={'home'}>
                 <AppNavbar/>
             </header>
